@@ -27,7 +27,7 @@ impl Edge {
 /// Adjacency edge (kept minimal for speed)
 #[derive(Debug, Clone, Copy)]
 struct AdjEdge {
-    other: u64,   // for out_adj: this is "to"; for in_adj: this is "from"
+    other: u64, // for out_adj: this is "to"; for in_adj: this is "from"
     weight: f64,
 }
 

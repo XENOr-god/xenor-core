@@ -1,10 +1,10 @@
 pub mod core;
-pub mod sim;
 pub mod rewards;
+pub mod sim;
 
 #[cfg(test)]
 mod tests {
-    use super::core::percolation::{units, Amount, Graph, PropagationStop, SCALE};
+    use super::core::percolation::{Amount, Graph, PropagationStop, SCALE, units};
     use super::sim::Node;
     use std::collections::{HashMap, HashSet};
 
