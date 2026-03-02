@@ -97,7 +97,7 @@ impl Graph {
 
         // update out adjacency
         {
-            let v = self.out_adj.entry(from).or_insert_with(Vec::new);
+            let v = self.out_adj.entry(from).or_default();
             v.push(AdjEdge { other: to, weight });
             // deterministik adjacency order
             v.sort_by(|a, b| a.other.cmp(&b.other));
@@ -105,7 +105,7 @@ impl Graph {
 
         // update in adjacency
         {
-            let v = self.in_adj.entry(to).or_insert_with(Vec::new);
+            let v = self.in_adj.entry(to).or_default();
             v.push(AdjEdge {
                 other: from,
                 weight,
