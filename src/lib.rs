@@ -6,7 +6,7 @@ pub mod rewards;
 mod tests {
     use super::sim::Node;
     use super::core::percolation::Graph;
-    use std::collections::HashSet;
+    use std::collections::{HashMap, HashSet};
 
     #[test]
     fn create_node() {
@@ -30,7 +30,6 @@ mod tests {
         g.add_edge(1, 2, 0.3);
         g.add_edge(3, 2, 0.4);
 
-        // total inflow to node 2 = 0.7
         assert_eq!(g.inflow(2), 0.7);
         assert!(g.is_active(2, 0.5));
         assert!(!g.is_active(2, 0.8));
@@ -51,5 +50,21 @@ mod tests {
         assert!(result.contains(&1));
         assert!(result.contains(&2));
         assert!(result.contains(&3));
+    }
+
+    #[test]
+    fn reward_distribution() {
+        let mut g = Graph::default();
+
+        g.add_edge(1, 2, 0.6);
+        g.add_edge(1, 3, 0.4);
+
+        let mut rewards = HashMap::new();
+        rewards.insert(1, 100.0);
+
+        let ledger = g.distribute_rewards(&rewards);
+
+        assert_eq!(ledger.balances.get(&2).unwrap(), &60.0);
+        assert_eq!(ledger.balances.get(&3).unwrap(), &40.0);
     }
 }

@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Clone)]
 pub struct Edge {
@@ -17,6 +17,11 @@ impl Edge {
 pub struct Graph {
     pub nodes: Vec<u64>,
     pub edges: Vec<Edge>,
+}
+
+#[derive(Debug, Default)]
+pub struct Ledger {
+    pub balances: HashMap<u64, f64>,
 }
 
 impl Graph {
@@ -52,7 +57,6 @@ impl Graph {
         self.inflow(node) >= threshold
     }
 
-    /// One step: add newly activated nodes based on threshold.
     pub fn propagate_once(&self, active: &HashSet<u64>, threshold: f64) -> HashSet<u64> {
         let mut next = active.clone();
 
@@ -65,8 +69,11 @@ impl Graph {
         next
     }
 
-    /// Iterate until stable (no new activations).
-    pub fn propagate_until_stable(&self, initial_active: HashSet<u64>, threshold: f64) -> HashSet<u64> {
+    pub fn propagate_until_stable(
+        &self,
+        initial_active: HashSet<u64>,
+        threshold: f64,
+    ) -> HashSet<u64> {
         let mut current = initial_active;
 
         loop {
@@ -76,5 +83,38 @@ impl Graph {
             }
             current = next;
         }
+    }
+
+    pub fn distribute_rewards(
+        &self,
+        initial_rewards: &HashMap<u64, f64>,
+    ) -> Ledger {
+        let mut ledger = Ledger::default();
+
+        for (&node, &amount) in initial_rewards {
+            if amount <= 0.0 {
+                continue;
+            }
+
+            let outgoing: Vec<_> = self
+                .edges
+                .iter()
+                .filter(|e| e.from == node)
+                .collect();
+
+            let total_weight: f64 = outgoing.iter().map(|e| e.weight).sum();
+
+            if total_weight == 0.0 {
+                *ledger.balances.entry(node).or_insert(0.0) += amount;
+                continue;
+            }
+
+            for edge in outgoing {
+                let share = amount * (edge.weight / total_weight);
+                *ledger.balances.entry(edge.to).or_insert(0.0) += share;
+            }
+        }
+
+        ledger
     }
 }
