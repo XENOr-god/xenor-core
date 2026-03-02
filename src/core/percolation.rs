@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 #[derive(Debug, Clone)]
 pub struct Edge {
     pub from: u64,
@@ -48,5 +50,31 @@ impl Graph {
 
     pub fn is_active(&self, node: u64, threshold: f64) -> bool {
         self.inflow(node) >= threshold
+    }
+
+    /// One step: add newly activated nodes based on threshold.
+    pub fn propagate_once(&self, active: &HashSet<u64>, threshold: f64) -> HashSet<u64> {
+        let mut next = active.clone();
+
+        for &node in &self.nodes {
+            if !active.contains(&node) && self.is_active(node, threshold) {
+                next.insert(node);
+            }
+        }
+
+        next
+    }
+
+    /// Iterate until stable (no new activations).
+    pub fn propagate_until_stable(&self, initial_active: HashSet<u64>, threshold: f64) -> HashSet<u64> {
+        let mut current = initial_active;
+
+        loop {
+            let next = self.propagate_once(&current, threshold);
+            if next == current {
+                return current;
+            }
+            current = next;
+        }
     }
 }
