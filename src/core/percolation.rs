@@ -30,12 +30,23 @@ impl Graph {
         self.edges.push(Edge::new(from, to, weight));
     }
 
-    // 👇 TARUH DI SINI (di dalam impl Graph)
     pub fn outflow(&self, from: u64) -> f64 {
         self.edges
             .iter()
             .filter(|e| e.from == from)
             .map(|e| e.weight)
             .sum()
+    }
+
+    pub fn inflow(&self, to: u64) -> f64 {
+        self.edges
+            .iter()
+            .filter(|e| e.to == to)
+            .map(|e| e.weight)
+            .sum()
+    }
+
+    pub fn is_active(&self, node: u64, threshold: f64) -> bool {
+        self.inflow(node) >= threshold
     }
 }
