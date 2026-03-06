@@ -13,20 +13,11 @@ Reward propagation follows deterministic routing rules.
 ## Conceptual model
 
 ```text
-  ┌─────────┐
-  │ Protocol│
-  └────┬────┘
-       │
-       ▼
-  ┌─────────┐
-  │ Node A  │
-  └────┬────┘
-       │
- ┌─────┴─────────┐
- ▼               ▼
-┌─────────┐ ┌─────────┐
-│ Node B  │ │ Node C  │
-└─────────┘ └─────────┘
+        Protocol
+           │
+        Node A
+        /    \
+    Node B  Node C
 ```
 
 Propagation is deterministic.
@@ -37,19 +28,20 @@ Given the same graph state and input events, the incentive distribution will alw
 
 ## Key design goals
 
-• deterministic propagation  
-• auditable incentive flows  
-• simulation-first design  
-• protocol-native reward routing  
+- deterministic propagation
+- auditable incentive flows
+- simulation-first design
+- protocol-native reward routing
 
 ---
 
 ## System layers
+
 ```text
 xenor-core
 │
-├── graph model
-├── propagation engine
-├── incentive routing logic
-└── deterministic execution layer
+├─ graph model
+├─ propagation engine
+├─ incentive routing logic
+└─ deterministic execution layer
 ```
