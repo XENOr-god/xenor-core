@@ -45,10 +45,11 @@ Given the same graph state and input events, the incentive distribution will alw
 ---
 
 ## System layers
-
+```text
 xenor-core
 │
 ├── graph model
 ├── propagation engine
 ├── incentive routing logic
 └── deterministic execution layer
+```
