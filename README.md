@@ -41,9 +41,6 @@ Reward propagation follows deterministic routing rules which makes the system:
 
 ## Repository structure
 
-
----
-
 ## Relationship to other repositories
 
 xenor-core  
