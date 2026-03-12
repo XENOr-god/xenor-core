@@ -1,63 +1,33 @@
 # XENØr Core
 
-Deterministic graph propagation and incentive routing engine written in Rust.
+Core protocol and systems work for XENØr.
 
-XENØr Core is the foundational engine for modeling and executing verifiable incentive flows in protocol-native systems.
+This repository contains the foundational systems work behind XENØr, with an emphasis on deterministic execution, verifiable incentives, and production-oriented protocol design.
 
-The system focuses on deterministic reward propagation, auditable incentive structures, and simulation-first development.
+## Focus
 
----
+The core repository is intended to support:
 
-## Why this exists
+- protocol logic
+- systems architecture
+- mechanism implementation
+- deterministic execution paths
+- audit-first engineering decisions
 
-Most token systems rely on opaque incentive logic.
+## Design Principles
 
-XENØr explores a different approach:
+- deterministic systems
+- verifiable incentive design
+- simulation-informed development
+- security and audit readiness
+- minimal and explicit system behavior
 
-- deterministic propagation
-- verifiable reward routing
-- protocol-native incentive structures
-- simulation-driven design
+## Related Repositories
 
-The goal is to design systems where incentive movement can be inspected, tested, and reproduced.
-
----
-
-## Architecture
-
-XENØr Core models token flows as a deterministic graph propagation system.
-
-Nodes represent participants or protocol components.
-
-Edges represent incentive relationships.
-
-Reward propagation follows deterministic routing rules which makes the system:
-
-- reproducible
-- auditable
-- simulation-friendly
-
----
-
-## Repository structure
-
-## Relationship to other repositories
-
-xenor-core  
-Reusable protocol primitives and deterministic propagation engine.
-
-xenor-sim  
-Simulation environment used to test system behavior.
-
-xenor-sale  
-Archived experiment of an early bonding-curve prototype.
-
----
+- **xenor-site** — public-facing site and ecosystem surface
+- **xenor-sim** — simulation and modeling environment
+- **xenor-sale** — archived early sale experiment, kept for reference only
 
 ## Status
 
-Early research and development.
-
-No token launch.
-
-Open build.
+Active core systems repository for the XENØr project.
