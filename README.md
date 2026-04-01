@@ -1,33 +1,39 @@
 # XENØr Core
 
-Core protocol and systems work for XENØr.
+Deterministic graph propagation and conservative reward-routing engine written in Rust.
 
-This repository contains the foundational systems work behind XENØr, with an emphasis on deterministic execution, verifiable incentives, and production-oriented protocol design.
+`xenor-core` is the execution layer in the XENØr stack. It keeps propagation rules inspectable, reproducible, and small enough to reason about directly.
 
 ## Focus
 
-The core repository is intended to support:
-
-- protocol logic
-- systems architecture
-- mechanism implementation
-- deterministic execution paths
-- audit-first engineering decisions
+- deterministic propagation
+- conservative reward routing
+- auditable state movement
+- simulation-ready primitives
 
 ## Design Principles
 
-- deterministic systems
-- verifiable incentive design
-- simulation-informed development
-- security and audit readiness
-- minimal and explicit system behavior
+- identical inputs should produce identical outputs
+- routing rules should remain explicit and bounded
+- the core should stay small enough to inspect directly
+- simulation and public communication stay in separate repositories
 
 ## Related Repositories
 
-- **xenor-site** — public-facing site and ecosystem surface
-- **xenor-sim** — simulation and modeling environment
-- **xenor-sale** — archived early sale experiment, kept for reference only
+- [`xenor-sim`](https://github.com/XENOr-god/xenor-sim) — scenario testing and experiment runner
+- [`xenor-site`](https://github.com/XENOr-god/xenor-site) — canonical public surface for architecture and repository status
+- [`xenor-sale`](https://github.com/XENOr-god/xenor-sale) — archived sale prototype kept only as historical research context
+
+## Local Development
+
+```bash
+cargo check
+cargo test
+cargo run
+```
+
+Architecture notes live in `docs/architecture.md`.
 
 ## Status
 
-Active core systems repository for the XENØr project.
+Early research engine. No token launch logic lives here. Interfaces may still change as the stack evolves.
