@@ -8,7 +8,8 @@ simulation and public communication.
 ## Status
 
 Active, research-stage core repository. Public release tags exist, but the core
-interfaces and surrounding stack are still evolving.
+interfaces and surrounding stack are still evolving and should not be read as a
+stable public API surface yet.
 
 ## Why This Repo Exists
 
@@ -55,6 +56,11 @@ cargo run
   engine and replay/snapshot substrate
 - [`xenor-sale`](https://github.com/XENOr-god/xenor-sale) — archived
   historical sale prototype
+
+## Contributing
+
+No standalone contributing guide is currently published in this repository.
+Use issues or pull requests directly for targeted core fixes.
 
 ## License
 
