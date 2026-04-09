@@ -1,9 +1,9 @@
 # xenor-core
 
-`xenor-core` is the deterministic execution and protocol-systems layer in the
-XENOr stack. It keeps graph propagation, routing logic, and state transitions
-small enough to inspect directly and stable enough to serve as the base for
-simulation and public communication.
+`xenor-core` is the core logic layer in the XENOr stack. It keeps graph
+propagation, routing logic, and state transitions small enough to inspect
+directly and stable enough to serve as the base for validation and public
+communication.
 
 ## Status
 
@@ -19,11 +19,13 @@ scenario harness, not the public website, and not launch-specific experiments.
 
 ## Relationship to the XENOr Stack
 
-- `xenor-core` is the deterministic execution/core systems layer
-- `xenor-sim` builds scenarios and validation runs on top of `xenor-core`
 - `xenor-site` is the canonical public surface and repository map
-- `xenor-engine` is a lower-level deterministic engine substrate, not the main
-  XENOr protocol logic layer
+- `xenor-core` is the core logic layer
+- `xenor-sim` builds scenarios and validation runs on top of `xenor-core`
+- `xenor-engine` is the canonical deterministic substrate, not the main XENOr
+  logic layer
+- `xenor-native` is the experimental native lab
+- `xenor-sale` is archived historical work
 
 ## Quick Start / Local Development
 
@@ -43,6 +45,9 @@ cargo run
 
 - This is not the canonical public website. Use `xenor-site` for that.
 - This is not the main scenario harness. Use `xenor-sim` for validation runs.
+- This is not the deterministic substrate. Use `xenor-engine` for that.
+- This is not the experimental native lab. Use `xenor-native` for low-level
+  native incubation work.
 - This is not a launch or sale repository.
 - The core should stay deterministic and readable before it grows broader.
 
@@ -50,12 +55,14 @@ cargo run
 
 - [`xenor-site`](https://github.com/XENOr-god/xenor-site) — canonical public
   surface and first stop for newcomers
-- [`xenor-sim`](https://github.com/XENOr-god/xenor-sim) — scenario and
-  validation layer built around `xenor-core`
-- [`xenor-engine`](https://github.com/XENOr-god/xenor-engine) — deterministic
-  engine and replay/snapshot substrate
+- [`xenor-sim`](https://github.com/XENOr-god/xenor-sim) — validation layer
+  built around `xenor-core`
+- [`xenor-engine`](https://github.com/XENOr-god/xenor-engine) — canonical
+  deterministic substrate
+- [`xenor-native`](https://github.com/XENOr-god/xenor-native) — experimental
+  native lab
 - [`xenor-sale`](https://github.com/XENOr-god/xenor-sale) — archived
-  historical sale prototype
+  historical work
 
 ## Contributing
 
